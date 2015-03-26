@@ -10,3 +10,6 @@ E:\VSProjects\TestProjects\MVC\Wpf_App1\Wpf_App1\obj\x86\Debug\Wpf_App1.csproj.G
 E:\VSProjects\TestProjects\MVC\Wpf_App1\Wpf_App1\obj\x86\Debug\Wpf_App1.exe
 E:\VSProjects\TestProjects\MVC\Wpf_App1\Wpf_App1\obj\x86\Debug\Wpf_App1.pdb
 E:\VSProjects\TestProjects\MVC\Wpf_App1\Wpf_App1\bin\Debug\Wpf_App1.exe.config
+C:\Users\jamebyrd\Source\Repos\Wpf_App1\Wpf_App1\bin\Debug\Wpf_App1.exe.config
+C:\Users\jamebyrd\Source\Repos\Wpf_App1\Wpf_App1\obj\x86\Debug\Wpf_App1.exe
+C:\Users\jamebyrd\Source\Repos\Wpf_App1\Wpf_App1\obj\x86\Debug\Wpf_App1.pdb
