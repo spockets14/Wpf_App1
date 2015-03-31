@@ -104,6 +104,12 @@
   <ItemGroup>
     <Resource Include="Images\Tulips.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\dbConnection\DBConnection.csproj">
+      <Project>{5bc6f1d2-ec90-4a0f-8541-eec67b8e0fb8}</Project>
+      <Name>DBConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

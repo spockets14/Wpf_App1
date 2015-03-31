@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
 using System.Data;
+using DBConnection;
+
 namespace Wpf_App1
 {
     /// <summary>
@@ -20,7 +22,8 @@ namespace Wpf_App1
     /// </summary>
     public partial class MainWindow : Window
     {
-        string dbConnectionString = @"Data Source=database.db;version=3;";
+        //string dbConnectionString = @"Data Source=database.db;version=3;";
+        string dbConnectionString = new GetAConnectionNow().getADBString();
         bool blnLoggedIn = false;
 
         static Dictionary<int, string> sqlCmdTypes = new Dictionary<int, string>
@@ -58,16 +61,27 @@ namespace Wpf_App1
                 if(count == 1)
                 {
                     MessageBox.Show("Username and password is correct");
-                    
+                    if(blnLoggedIn)
+                    {
+                        logoutUser();     
+                    }
                     ActivateTabs(userRole);
                     blnLoggedIn = true;
                 }
                 if (count > 1)
                 {
+                    if (blnLoggedIn)
+                    {
+                        logoutUser();
+                    }
                     MessageBox.Show("Duplicate Username and password...Try Again");
                 }
                 if (count < 1)
                 {
+                    if (blnLoggedIn)
+                    {
+                        logoutUser();
+                    }
                     MessageBox.Show("Username and password is not correct");
                 }
                 closeDBConnection(sqliteCon);
@@ -78,6 +92,17 @@ namespace Wpf_App1
             }
         }
 
+        private void logoutUser()
+        {
+            blnLoggedIn = false;
+            foreach (TabItem item in tabWindow.Items)
+            {
+                if (item.Name != tab_login.Name)
+                {
+                    item.IsEnabled = false;
+                }
+            }   
+        }
         private void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
@@ -209,6 +234,10 @@ namespace Wpf_App1
                         if(formIdList.Contains(item.Name))
                         {
                             item.IsEnabled = true;
+                            if (item.Name.ToString() == "tab_search")
+                            {
+                                item.IsSelected = true;
+                            }
                         }
                     }              
 
