@@ -44,7 +44,7 @@ namespace Wpf_App1
            // MessageBox.Show("Test Message");            
             try
             {
-                string Query = "select eid,roles from employeeinfo where username = '" + this.txt_username.Text + "' and password = '" + this.txt_password.Password + "';";
+                string Query = "select eid,roles,floatRole from employeeinfo where username = '" + this.txt_username.Text + "' and password = '" + this.txt_password.Password + "';";
                 SQLiteConnection sqliteCon = getDBConnection();
                 SQLiteDataReader dataReader = runQuery(Query, sqliteCon);
                 
@@ -54,7 +54,8 @@ namespace Wpf_App1
                 {
                     if (dataReader.HasRows)
                     {
-                        userRole = dataReader["roles"].ToString();
+                        //userRole = dataReader["roles"].ToString();
+                        userRole = dataReader["floatRole"].ToString();
                     }
                     count++;
                 }
@@ -63,7 +64,7 @@ namespace Wpf_App1
                     MessageBox.Show("Username and password is correct");
                     if(blnLoggedIn)
                     {
-                        logoutUser();     
+                        logoutUser();
                     }
                     ActivateTabs(userRole);
                     blnLoggedIn = true;
@@ -113,12 +114,15 @@ namespace Wpf_App1
             blnLoggedIn = false;
             foreach (TabItem item in tabWindow.Items)
             {
+                item.Visibility = Visibility.Visible;
                 if (item.Name != tab_login.Name)
                 {
                     item.IsEnabled = false;
                 }
             }              
             this.tab_search.IsEnabled = false;
+            txt_username.Clear();
+            txt_password.Clear();
             MessageBox.Show("You have logged out");
         }
 
@@ -214,10 +218,15 @@ namespace Wpf_App1
         {
             try
             {
+                string firstInt;
+                firstInt = role.Substring(0, role.IndexOf('.'));
+                string secondInt;
+                secondInt = role.Substring(role.IndexOf('.')+1);
                 string Query = "";
                 string formIdList = "";
-                Query = "select FormId from forms where (cast(roles as bit) & " + Convert.ToInt32(role) + ") <> 0;";
-                
+                //Query = "select FormId from forms where (cast(roles as bit) & " + Convert.ToInt32(role) + ") <> 0;";
+                //Query = "select FormId from forms where ((cast(cast(substr(floatrole,1,instr(floatrole,'.')) as int) as bit) & " + Convert.ToInt32(firstInt) + ") <> 0 and (cast(cast(substr(floatrole,instr(floatrole,'.')+1) as int) as bit) & " + Convert.ToInt32(secondInt) + ") <> 0)";
+                Query = "select FormId from forms where ((cast(cast(substr(floatrole,1,charindex('.',floatrole)) as int) as bit) & " + Convert.ToInt32(firstInt) + ") <> 0 and (cast(cast(substr(floatrole,charindex('.',floatrole)+1) as int) as bit) & " + Convert.ToInt32(secondInt) + ") <> 0)"; 
                 SQLiteConnection sqliteCon = getDBConnection();
                 SQLiteDataReader dataReader2 = runQuery(Query, sqliteCon);
 
@@ -231,13 +240,18 @@ namespace Wpf_App1
 
                     foreach (TabItem item in tabWindow.Items)
                     {
-                        if(formIdList.Contains(item.Name))
+                        if (formIdList.Contains(item.Name))
                         {
                             item.IsEnabled = true;
+                            item.Visibility = Visibility.Visible;
                             if (item.Name.ToString() == "tab_search")
                             {
                                 item.IsSelected = true;
                             }
+                        }
+                        else
+                        {
+                            item.Visibility = Visibility.Collapsed;
                         }
                     }              
 
@@ -246,6 +260,16 @@ namespace Wpf_App1
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txt_username_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txt_password_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

@@ -13,8 +13,8 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Height="23" HorizontalAlignment="Left" Margin="9,0,0,34" Name="textBlock2" Text="password" VerticalAlignment="Bottom" Foreground="Black" Background="White" />
                     <TextBlock Height="23" HorizontalAlignment="Left" Margin="9,6,0,0" Name="textBlock1" Text="Username" VerticalAlignment="Top" Foreground="Black"></TextBlock>
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="85,6,0,0" Name="txt_username" VerticalAlignment="Top" Width="99" Text="" AcceptsTab="False" Grid.ColumnSpan="2" />
-                    <PasswordBox Height="23" HorizontalAlignment="Left" Margin="85,44,0,0" Name="txt_password" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="85,6,0,0" Name="txt_username" VerticalAlignment="Top" Width="99" Text="" AcceptsTab="False" Grid.ColumnSpan="2" TextChanged="txt_username_TextChanged" />
+                    <PasswordBox Height="23" HorizontalAlignment="Left" Margin="85,44,0,0" Name="txt_password" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2" PasswordChanged="txt_password_PasswordChanged" />
                     <Button Content="Login" Height="23" HorizontalAlignment="Right" Margin="0,78,92,0" Name="btn_1" VerticalAlignment="Top" Width="75" Click="btn_1_Click" IsDefault="True" Grid.Column="1" />
                     <Button Content="Log Out" Height="23" HorizontalAlignment="Left" Margin="108,78,0,0" Name="btn_logOut" VerticalAlignment="Top" Width="62" Background="Red" Click="btn_logOut_Click" ClickMode="Release" Grid.Column="1" />
                     
@@ -33,6 +33,30 @@
                 <Grid />
             </TabItem>
             <TabItem Header="Buy Stuff" Name="tab_buystuff" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem1" Name="tabItem1" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem2" Name="tabItem2" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem3" Name="tabItem3" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem4" Name="tabItem4" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem5" Name="tabItem5" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem6" Name="tabItem6" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem7" Name="tabItem7" IsEnabled="False">
+                <Grid />
+            </TabItem>
+            <TabItem Header="tabItem8" Name="tabItem8" IsEnabled="False">
                 <Grid />
             </TabItem>
         </TabControl>
